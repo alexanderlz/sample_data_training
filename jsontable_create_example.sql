@@ -1,0 +1,60 @@
+CREATE EXTERNAL TABLE `sample_raw`(
+  `actualbetamount` double COMMENT 'from deserializer',
+  `actualmaxbet` double COMMENT 'from deserializer',
+  `additionaldata` string COMMENT 'from deserializer',
+  `balance` double COMMENT 'from deserializer',
+  `basicmaxbet` double COMMENT 'from deserializer',
+  `betamount` double COMMENT 'from deserializer',
+  `betid` int COMMENT 'from deserializer',
+  `bonusmultiplier` float COMMENT 'from deserializer',
+  `bonusrestored` boolean COMMENT 'from deserializer',
+  `bonuswon` int COMMENT 'from deserializer',
+  `clienttypeid` int COMMENT 'from deserializer',
+  `collapsing_multiplier` float COMMENT 'from deserializer',
+  `collapsing_won_count` int COMMENT 'from deserializer',
+  `computerguid` string COMMENT 'from deserializer',
+  `correctdonanswer` string COMMENT 'from deserializer',
+  `donmultiplay` string COMMENT 'from deserializer',
+  `donround` int COMMENT 'from deserializer',
+  `experience` double COMMENT 'from deserializer',
+  `extradata` string COMMENT 'from deserializer',
+  `freespinscount` int COMMENT 'from deserializer',
+  `freespinswon` int COMMENT 'from deserializer',
+  `gameid` int COMMENT 'from deserializer',
+  `giftfreespin` int COMMENT 'from deserializer',
+  `ipaddress` string COMMENT 'from deserializer',
+  `is_collapsing_won` boolean COMMENT 'from deserializer',
+  `isdonwon` boolean COMMENT 'from deserializer',
+  `isminigame` boolean COMMENT 'from deserializer',
+  `jackpotid` int COMMENT 'from deserializer',
+  `linecount` int COMMENT 'from deserializer',
+  `minigameid` string COMMENT 'from deserializer',
+  `originalamount` double COMMENT 'from deserializer',
+  `payouttestid` int COMMENT 'from deserializer',
+  `piggybankbalance` double COMMENT 'from deserializer',
+  `reels` string COMMENT 'from deserializer',
+  `reelsposition` string COMMENT 'from deserializer',
+  `segmentationid` bigint COMMENT 'from deserializer',
+  `serverhost` string COMMENT 'from deserializer',
+  `serverid` int COMMENT 'from deserializer',
+  `sessionid` bigint COMMENT 'from deserializer',
+  `spints` bigint COMMENT 'from deserializer',
+  `tierbaseindicator` int COMMENT 'from deserializer',
+  `tierid` int COMMENT 'from deserializer',
+  `userid` bigint COMMENT 'from deserializer',
+  `userlevel` int COMMENT 'from deserializer',
+  `winamount` double COMMENT 'from deserializer',
+  `xmlid` int COMMENT 'from deserializer',
+  `wintype` int COMMENT 'from deserializer',
+  `maxinrow` int COMMENT 'from deserializer',
+  `guid` string COMMENT 'from deserializer')
+PARTITIONED BY (
+  `partition_date` string,
+  `partition_hour` string)
+
+ROW FORMAT SERDE 
+'org.openx.data.jsonserde.JsonSerDe' 
+STORED AS TEXTFILE
+
+LOCATION
+  '/training/data/json_test/'
